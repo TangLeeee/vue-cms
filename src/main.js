@@ -2,16 +2,22 @@
 // (runtime-only or standalone) has been set in webpack.base.conf with an alias.
 import Vue from 'vue'
 import App from './App'
-import router from './router'
-// 需要导入样式才能生效
+import VueRouter from 'vue-router'
+import router from './router/index'
+// 需要mint导入样式才能生效
 import 'mint-ui/lib/style.css'
 import MintUI from 'mint-ui'
+// 导入MUI样式
 import './lib/mui/css/mui.min.css'
+import './lib/mui/css/icons-extra.css'
+// 导入axios
+import axios from 'axios'
 
 Vue.config.productionTip = false
-Vue.use(router)
+Vue.use(VueRouter)
 Vue.use(MintUI)
-/* eslint-disable no-new */
+Vue.prototype.$http = axios
+
 new Vue({
   el: '#app',
   router,
