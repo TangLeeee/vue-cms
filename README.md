@@ -1,6 +1,6 @@
 # vue-cms
 
-> vue+webpack+minUI创建的一个简单手机app项目
+> vue+webpack+mintUI创建的一个简单手机app项目
 
 > 接口是在网上找的图片API，用python的flask简单在本地返回json对象，用axios接收
 > b站教程用的vue-resource略有不同，console.log(result)看一下怎么获取json数据
