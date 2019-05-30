@@ -13,6 +13,8 @@ import './lib/mui/css/icons-extra.css'
 // 导入axios
 import axios from 'axios'
 
+axios.defaults.baseURL = 'http://127.0.0.1:5000/';
+axios.defaults.headers.post['Content-Type'] = 'application/x-www-form-urlencoded';
 Vue.config.productionTip = false
 Vue.use(VueRouter)
 Vue.use(MintUI)
