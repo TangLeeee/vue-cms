@@ -1,20 +1,30 @@
 <template>
   <div class="newsinfo-container">
+    <!-- 大标题 -->
     <h3 class="title">{{ newsinfo.title }}</h3>
+
+    <!-- 子标题 -->
     <p class="subtitle">
-      <span>{{ newsinfo.add_time }}</span>
-      <span>{{ newsinfo.click }}</span>
+      <span>时间：{{ newsinfo.add_time | dateFormat }}</span>
+      <span>点击次数:{{ newsinfo.click }}</span>
     </p>
     <hr>
 
+    <!-- 内容区域 -->
     <div class="content">
       {{ newsinfo.content }}
     </div>
+
+    <!-- 评论区域 -->
+    <comment-box :id="this.id">
+
+    </comment-box>
   </div>
 </template>
 
 <script>
 import { Toast } from 'mint-ui'
+import comment from '../subcomponents/comment'
 export default {
   name: "NewsInfo",
   data(){
@@ -26,7 +36,7 @@ export default {
   created(){
     this.getNewsInfo()
   },
-  methods:{
+  methods: {
     getNewsInfo(){
       this.$http.get('/api/getnew/' + this.id).then(result => {
         // console.log(result)
@@ -38,6 +48,9 @@ export default {
         }
       })
     }
+  },
+  components: {  //用来注册子组件节点
+    'comment-box' : comment
   }
 }
 </script>
