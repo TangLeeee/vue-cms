@@ -4,7 +4,9 @@
       <div class="mui-card">
         <div class="mui-card-content">
           <div class="mui-card-content-inner">
-            <mt-switch></mt-switch>
+            <mt-switch
+              v-model="$store.getters.getGoodsSelected['90']"
+              @change="SelectedChanged('90', $store.getters.getGoodsSelected['90'])"></mt-switch>
             <img src="//i1.mifile.cn/a1/pms_1524621350.77238418!220x220.jpg">
             <div class="info">
               <h1>一代神机小米6，全网通版64G</h1>
@@ -24,24 +26,33 @@
         <div class="mui-card-content-inner jiesuan">
           <div class="left">
             <p>总计（不含运费）</p>
-            <p>已勾选商品 <span class="red">0</span> 件，总价 <span class="red">￥0</span></p>
+            <p>已勾选商品 <span class="red">{{ $store.getters.getGoodsCountAndAmount.count}}</span> 件，总价 <span class="red">￥{{ $store.getters.getGoodsCountAndAmount.amount }}</span></p>
           </div>
           <mt-button type="danger">结算</mt-button>
         </div>
       </div>
     </div>
+
+    <p>{{ $store.getters.getGoodsSelected }}</p>
   </div>
 </template>
 
 <script>
   import numbox from '../subcomponents/shopcar_numbox'
 
-  var obj = localStorage.getItem('cart')
-
   export default {
+    data(){
+      return{}
+    },
     name: "ShopcarContainer",
     components:{
       numbox
+    },
+    methods:{
+      SelectedChanged(id, val){
+        console.log(id + '---' + val)
+        this.$store.commit('updateGoodsSelected', {id: id, selected: val})
+      }
     }
   }
 </script>

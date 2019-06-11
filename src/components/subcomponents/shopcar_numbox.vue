@@ -26,7 +26,6 @@ export default {
         id: 90,
         count: this.$refs.numbox.value
       })
-
     }
   },
   props: ["initcount",]

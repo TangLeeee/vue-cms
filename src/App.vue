@@ -2,7 +2,11 @@
   <div class="app-container">
 
     <!-- 顶部header区域 -->
-    <mt-header fixed title="XCY"></mt-header>
+    <mt-header fixed title="XCY">
+      <span @click="goBack" slot="left" v-show="flag">
+        <mt-button icon="back">返回</mt-button>
+      </span>
+    </mt-header>
 
     <!-- 中间路由router-view区域 -->
     <transition>
@@ -33,7 +37,29 @@
 
 <script>
 export default {
-  name: 'App'
+  name: 'App',
+  data(){
+    return{
+      flag: false
+    }
+  },
+  created(){
+    this.flag = this.$route.path !== '/index'
+  },
+  methods:{
+    goBack(){
+      this.$router.go(-1)
+    }
+  },
+  watch:{
+    '$route.path':function(newVal){
+      if(newVal === '/index'){
+        this.flag = false
+      }else{
+        this.flag = true
+      }
+    }
+  }
 }
 </script>
 

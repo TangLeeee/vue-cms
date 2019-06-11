@@ -24,7 +24,7 @@ Vue.use(MintUI)
 Vue.use(Vuex)
 Vue.prototype.$http = axios
 
-var obj = [{"id":90,"count":3,"price":1999,"seleted":true}]
+var obj = [{"id":90,"count":3,"price":1999,"selected":true}]
 obj = JSON.stringify(obj)
 localStorage.setItem('cart', obj)
 var cart = JSON.parse(localStorage.getItem('cart')) || '[]'
